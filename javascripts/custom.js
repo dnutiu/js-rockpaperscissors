@@ -1,6 +1,6 @@
 $(document).ready( function() {
 	var fsvs = $.fn.fsvs({
-		speed : 5000,
+		speed : 1000,
 		bodyID : 'fsvs-body',
 		selector : '> .slide',
 		mouseSwipeDisance : 40,
