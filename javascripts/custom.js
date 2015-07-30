@@ -15,4 +15,34 @@ $(document).ready( function() {
 		nthClasses : false,
 		detectHash : true
 	});
+
+	var username = "Player";
+	var $player = $('.game-slide header label');
+	var $header = $('.game-slide header');
+	var $nameInput = $('#name');
+	var $saveButton = $('.game-slide header button');
+
+	$player.on("click", function() {
+
+		$nameInput.val($player.text());
+		$header.toggleClass('editMode');
+
+
+	});
+
+	$nameInput.on("keypress", function(e) {
+		var key = e.keyCode || e.which;
+		if (key == '13') {
+			$saveButton.click();
+		}
+	});
+	
+	$saveButton.on("click", function() {
+
+		$header.toggleClass('editMode');
+		$player.text($nameInput.val());
+
+		username = $player.text();
+	});
+
 });
