@@ -8,14 +8,47 @@
 }
 .game-slide {
 	background-color: $game-slide;
+	header {
+		h1, label {
+			font-family: "Open Sans", sans-serif;
+			font-size: 2.57143rem;
+		    line-height: 1.1;
+		    color: #252525;
+		    display: inline-block;
+		    font-weight: normal;
+
+		}
+		
+		button { 
+			padding: 1.5em;
+			margin-bottom: 20px;
+			font-weight: bold;
+			@include inline-block();
+			@include border-radius(10px);
+
+			background-color: $button-color;
+			border-color: green;
+			color: green;
+		}
+	}
+	.name-input {
+		height: 4.57143rem;
+		width: 250px;
+		padding: 10px;
+		font-size: 2.57143rem;
+		background-color: transparentize(white, 0.5);
+		@include inline-block();
+		@include border-radius(10px);
+	}
 }
 .credits-slide {
-	display: flex;
-  	justify-content: center;
-  	flex-direction: column;
-  	height: 400px;
 	background-color: $credits-slide;
 	text-align: center;
+	-webkit-user-select: none;  
+	-khtml-user-select: none;   
+	-moz-user-select: none; 
+	-o-user-select: none;    
+	user-select: none;
 	h1, h2 {
 		color: white;
 		font-weight: bold;
@@ -31,6 +64,11 @@
 		font-size: 1.5em;
 		@media screen and (min-width: 768px) {
 			font-size: 3em;
+		}
+	}
+	a {
+		&:hover {
+			color: white;
 		}
 	}
 }
