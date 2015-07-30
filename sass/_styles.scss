@@ -22,11 +22,13 @@
 
 		}
 		label {
+			visibility: visible;
 			cursor: pointer;
 			@include single-transition(visibility, 1s)
 		}
 		button {
 			display: none;
+			visibility: hidden;
 			padding: 1.5em;
 			margin-bottom: 20px;
 			font-weight: bold;
@@ -38,6 +40,7 @@
 		}
 		.name-input {
 			display: none;
+			visibility: hidden;
 			height: 4.57143rem;
 			width: 150px;
 			padding: 10px;
@@ -51,8 +54,10 @@
 		&.editMode {
 			label {
 				display: none;
+				visibility: hidden;
 			}
 			.name-input, button {
+				visibility: visible;
 				@include inline-block();
 			}
 		}
