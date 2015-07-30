@@ -1,4 +1,13 @@
 $(document).ready( function() {
+	var username = localStorage.getItem('username') ? localStorage.getItem('username') : "Player";
+	
+	var $player = $('.game-slide header label');
+	var $header = $('.game-slide header');
+	var $nameInput = $('#name');
+	var $saveButton = $('.game-slide header button');
+
+	$player.text(username);
+
 	var fsvs = $.fn.fsvs({
 		speed : 1000,
 		bodyID : 'fsvs-body',
@@ -16,17 +25,10 @@ $(document).ready( function() {
 		detectHash : true
 	});
 
-	var username = "Player";
-	var $player = $('.game-slide header label');
-	var $header = $('.game-slide header');
-	var $nameInput = $('#name');
-	var $saveButton = $('.game-slide header button');
 
 	$player.on("click", function() {
-
 		$nameInput.val($player.text());
 		$header.toggleClass('editMode');
-
 
 	});
 
@@ -36,13 +38,13 @@ $(document).ready( function() {
 			$saveButton.click();
 		}
 	});
-	
-	$saveButton.on("click", function() {
 
+	$saveButton.on("click", function() {
 		$header.toggleClass('editMode');
 		$player.text($nameInput.val());
 
 		username = $player.text();
+		localStorage.setItem("username", username);
 	});
 
 });
