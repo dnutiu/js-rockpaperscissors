@@ -25,18 +25,24 @@ $(document).ready( function() {
 		detectHash : true
 	});
 
-
-	$player.on("click", function() {
+	var toggleEditMode = function() {
 		$nameInput.val($player.text());
 		$header.toggleClass('editMode');
-
+	};
+	$player.on("click", function() {
+		toggleEditMode();
 	});
-
+	$player.on("tap", function() {
+		toggleEditMode();
+	});
 	$nameInput.on("keypress", function(e) {
 		var key = e.keyCode || e.which;
 		if (key == '13') {
 			$saveButton.click();
 		}
+	});
+	$nameInput.on("dblclick", function() {
+		$saveButton.click();
 	});
 
 	$saveButton.on("click", function() {
