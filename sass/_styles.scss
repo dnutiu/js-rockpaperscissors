@@ -67,6 +67,43 @@
 			}
 		}
 	}
+	.game-window {
+		h1 {
+			text-align: center;
+		}
+		.moves {
+			margin: 0 auto;
+			text-align: center;
+			padding: 2em;
+			@include border-top-radius(50px);
+			@include border-bottom-radius(10px);
+			background-color: complement($game-slide);
+			img {
+				padding: 0.5em 1em;
+			}
+			.selected {
+				border: 2px solid $game-slide;
+			}
+		}
+		button {
+			display: block;
+			margin: 0 auto;
+			font-weight: bold;
+			font-size: 2em;
+			padding: 0 4em;
+			background-color: complement($game-slide);
+			border-top: none;
+			border-right: none;
+			border-left: none;
+			border-bottom: 5px solid lighten(complement($game-slide), 20);
+			@include border-bottom-radius(30px);
+			color: $button-color;
+			&:active {
+				background-color: lighten(complement($game-slide), 10);
+				color: $go-button-active;
+			}
+		}
+	}
 }
 .credits-slide {
 	background-color: $credits-slide;

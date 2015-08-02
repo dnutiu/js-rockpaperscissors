@@ -102,8 +102,64 @@
   *zoom: 1;
   *display: inline;
 }
-
 /* line 71, ../sass/_styles.scss */
+.game-slide .game-window h1 {
+  text-align: center;
+}
+/* line 74, ../sass/_styles.scss */
+.game-slide .game-window .moves {
+  margin: 0 auto;
+  text-align: center;
+  padding: 2em;
+  -moz-border-radius-topleft: 50px;
+  -webkit-border-top-left-radius: 50px;
+  border-top-left-radius: 50px;
+  -moz-border-radius-topright: 50px;
+  -webkit-border-top-right-radius: 50px;
+  border-top-right-radius: 50px;
+  -moz-border-radius-bottomleft: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #0a69fd;
+}
+/* line 81, ../sass/_styles.scss */
+.game-slide .game-window .moves img {
+  padding: 0.5em 1em;
+}
+/* line 84, ../sass/_styles.scss */
+.game-slide .game-window .moves .selected {
+  border: 2px solid #fd9e0a;
+}
+/* line 88, ../sass/_styles.scss */
+.game-slide .game-window button {
+  display: block;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 2em;
+  padding: 0 4em;
+  background-color: #0a69fd;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 5px solid #6fa7fe;
+  -moz-border-radius-bottomleft: 30px;
+  -webkit-border-bottom-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  -moz-border-radius-bottomright: 30px;
+  -webkit-border-bottom-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  color: #77ba01;
+}
+/* line 101, ../sass/_styles.scss */
+.game-slide .game-window button:active {
+  background-color: #3d88fd;
+  color: #FF3300;
+}
+
+/* line 108, ../sass/_styles.scss */
 .credits-slide {
   background-color: #333333;
   text-align: center;
@@ -113,33 +169,33 @@
   -o-user-select: none;
   user-select: none;
 }
-/* line 79, ../sass/_styles.scss */
+/* line 116, ../sass/_styles.scss */
 .credits-slide h1, .credits-slide h2 {
   color: white;
   font-weight: bold;
 }
-/* line 83, ../sass/_styles.scss */
+/* line 120, ../sass/_styles.scss */
 .credits-slide h1 {
   text-decoration: underline;
   font-size: 2.5em;
 }
 @media screen and (min-width: 768px) {
-  /* line 83, ../sass/_styles.scss */
+  /* line 120, ../sass/_styles.scss */
   .credits-slide h1 {
     font-size: 5em;
   }
 }
-/* line 90, ../sass/_styles.scss */
+/* line 127, ../sass/_styles.scss */
 .credits-slide h2 {
   font-size: 1.5em;
 }
 @media screen and (min-width: 768px) {
-  /* line 90, ../sass/_styles.scss */
+  /* line 127, ../sass/_styles.scss */
   .credits-slide h2 {
     font-size: 3em;
   }
 }
-/* line 97, ../sass/_styles.scss */
+/* line 134, ../sass/_styles.scss */
 .credits-slide a:hover {
   color: white;
 }
