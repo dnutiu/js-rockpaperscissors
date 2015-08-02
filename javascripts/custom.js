@@ -1,56 +1,74 @@
 $(document).ready( function() {
-	var username = localStorage.getItem('username') ? localStorage.getItem('username') : "Player";
 	
-	var $player = $('.game-slide header label');
+	var $player = $('#username');
 	var $header = $('.game-slide header');
-	var $nameInput = $('#name');
-	var $saveButton = $('.game-slide header button');
+	var $nameInput = $('#username-input');
+	var $saveButton = $('#save-username');
 
-	$player.text(username);
+	var controller = {
+		init: function() {
+			var username = localStorage.getItem('username') ? localStorage.getItem('username') : "Player";
 
-	var fsvs = $.fn.fsvs({
-		speed : 1000,
-		bodyID : 'fsvs-body',
-		selector : '> .slide',
-		mouseSwipeDisance : 540,
-		afterSlide : function(){},
-		beforeSlide : function(){},
-		endSlide : function(){},
-		mouseWheelEvents : true,
-		mouseDragEvents : false,
-		touchEvents : true,
-		arrowKeyEvents : true,
-		pagination : true,
-		nthClasses : false,
-		detectHash : true
-	});
+			this.initFSVS();
+			view.setPlayer(username);
+			this.bindEvents();
+		},
+		initFSVS: function() {
+			var fsvs = $.fn.fsvs({
+				speed : 1000,
+				bodyID : 'fsvs-body',
+				selector : '> .slide',
+				mouseSwipeDisance : 540,
+				afterSlide : function(){},
+				beforeSlide : function(){},
+				endSlide : function(){},
+				mouseWheelEvents : true,
+				mouseDragEvents : false,
+				touchEvents : true,
+				arrowKeyEvents : true,
+				pagination : true,
+				nthClasses : false,
+				detectHash : true
+			});
+		},
+		bindEvents: function() {
+			$player.on("click", function() {
+				view.editUsername();
+			}).on("tap", function() {
+				view.editUsername();
+			});
 
-	var toggleEditMode = function() {
-		$nameInput.val($player.text());
-		$header.toggleClass('editMode');
-	};
-	$player.on("click", function() {
-		toggleEditMode();
-	});
-	$player.on("tap", function() {
-		toggleEditMode();
-	});
-	$nameInput.on("keypress", function(e) {
-		var key = e.keyCode || e.which;
-		if (key == '13') {
-			$saveButton.click();
+			$nameInput.on("keypress", function(e) {
+				var key = e.keyCode || e.which;
+				if (key == '13') {
+					view.saveUsername();
+				}
+			}).on("dblclick", function() {
+				view.saveUsername();
+			});
+
+			$saveButton.on("click", function() {
+				view.saveUsername();
+			});			
 		}
-	});
-	$nameInput.on("dblclick", function() {
-		$saveButton.click();
-	});
+	};
 
-	$saveButton.on("click", function() {
-		$header.toggleClass('editMode');
-		$player.text($nameInput.val());
+	var view = {
+		setPlayer: function(username) {
+			$player.text(username);
+		},
+		editUsername: function() {
+			$nameInput.val($player.text());
+			$header.toggleClass('editMode');
+		},
+		saveUsername: function() {
+			$header.toggleClass('editMode');
+			$player.text($nameInput.val());
 
-		username = $player.text();
-		localStorage.setItem("username", username);
-	});
+			username = $player.text();
+			localStorage.setItem("username", username);
+		}
+	};
 
+	controller.init();
 });
