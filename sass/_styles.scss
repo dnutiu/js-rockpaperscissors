@@ -29,8 +29,7 @@
 		button {
 			display: none;
 			visibility: hidden;
-			padding: 1.5em;
-			margin-bottom: 20px;
+			padding: 1em;
 			font-weight: bold;
 			@include border-radius(10px);
 			background-color: $button-color;
@@ -42,15 +41,20 @@
 		.name-input {
 			display: none;
 			visibility: hidden;
-			height: 4.57143rem;
-			width: 150px;
+			height: 4rem;
+			width: 130px;
 			padding: 10px;
 			color: lighten(#252525, 10);
 			font-size: 2.57143rem;
 			background-color: transparentize(white, 0.5);
-			
 			@include border-radius(10px);
-			@include single-transition(visibility, 1s)
+			@include single-transition(all, 1s);
+			&:focus {
+				width: 180px;
+				@media screen and (min-width: 768px) {
+					width: 250px;
+				}
+			}
 		}
 		&.editMode {
 			label {
@@ -59,7 +63,7 @@
 			}
 			.name-input, button {
 				visibility: visible;
-				@include inline-block();
+				@include inline-block(top);
 			}
 		}
 	}
