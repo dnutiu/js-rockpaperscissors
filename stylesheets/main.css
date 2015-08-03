@@ -131,7 +131,7 @@
 }
 /* line 84, ../sass/_styles.scss */
 .game-slide .game-window .moves .selected {
-  border: 2px solid #fd9e0a;
+  outline: 2px solid #fd9e0a;
 }
 /* line 88, ../sass/_styles.scss */
 .game-slide .game-window button {
