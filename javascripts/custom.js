@@ -4,8 +4,10 @@ $(document).ready( function() {
 	var $header = $('.game-slide header');
 	var $nameInput = $('#username-input');
 	var $saveButton = $('#save-username');
+	var $moves = $('.moves img');
 
 	var controller = {
+		selection: null,
 		init: function() {
 			var username = localStorage.getItem('username') ? localStorage.getItem('username') : "Player";
 
@@ -49,7 +51,12 @@ $(document).ready( function() {
 
 			$saveButton.on("click", function() {
 				view.saveUsername();
-			});			
+			});
+
+			$moves.on("click", function() {
+				$('.moves img').removeClass('selected');
+				$(this).addClass('selected');
+			});		
 		}
 	};
 
