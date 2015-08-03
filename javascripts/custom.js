@@ -2,17 +2,75 @@ $(document).ready( function() {
 	
 	var $player = $('#username');
 	var $header = $('.game-slide header');
+	var $moves = $('.moves img');
 	var $nameInput = $('#username-input');
 	var $saveButton = $('#save-username');
-	var $moves = $('.moves img');
+	var $goButton = $('#go');
 
-	var controller = {
+	var game = {
+		username: null,
 		playerMove: null,
+		computerMove: null,
+		playerScore: null,
+		computerScore: null,
+		MOVES: ["Rock", "Paper", "Scissors"],
+		play: function() {
+			this.setComputerMove();
+			this.announceWinner();
+		},
+		announceWinner: function() {
+			var playerMove = this.playerMove;
+			var computerMove = this.computerMove;
+
+			if (playerMove.greaterThan(computerMove)) {
+				swal("You're Winner!", 
+					"Congratulations, you have won!", 
+					"success");
+			} else if (computerMove.greaterThan(playerMove)) {
+				swal("You lose!",
+				 	"The computer defeated you. :(",
+					"error");
+
+			} else if (playerMove.equal(computerMove)) {
+				swal("It's a draw!")
+			} else {
+				swal("Woops!", "Something went wrong, if the error"
+					+ "persists reaload the page", "error");
+			}
+		},
+		setComputerMove: function() {
+			var length= this.MOVES.length;
+			var index = Math.floor(Math.random() * length);
+
+			var move = this.checkValidMove(this.MOVES[index]);
+			this.computerMove = move;
+		},
+		checkValidMove: function(move) {
+			switch(move.toLowerCase()) {
+				case "rock":
+					return new Rock();
+					break;
+				case "paper":
+					return new Paper();
+					break;
+				case "scissors":
+					return new Scissors();
+					break;		
+				default:
+					swal("Woops!", "Something went wrong, if the error"
+						+ "persists reaload the page", "error");	 
+			}
+		}				
+	}
+	var controller = {
 		init: function() {
 			var username = localStorage.getItem('username') ? localStorage.getItem('username') : "Player";
-
+			
 			this.initFSVS();
+			
+			game.username = username;
 			view.setPlayer(username);
+			
 			this.bindEvents();
 		},
 		initFSVS: function() {
@@ -32,21 +90,6 @@ $(document).ready( function() {
 				nthClasses : false,
 				detectHash : true
 			});
-		},
-		checkValidMove: function(move) {
-			switch(move) {
-				case "Rock":
-					return new Rock();
-					break;
-				case "Paper":
-					return new Paper();
-					break;
-				case "Scissors":
-					return new Scissors();
-					break;		
-				default:
-					swal("Woops!", "Something went wrong, if the error persists reaload the page", "error");	 
-			}
 		},
 		bindEvents: function() {
 			var self = this;
@@ -71,19 +114,25 @@ $(document).ready( function() {
 			});
 
 			$moves.on("click", function() {
-				$('.moves img').removeClass('selected');
-				$(this).addClass('selected');
-				
-				var move = $(this).attr('alt')
-				self.playerMove = self.checkValidMove(move);
+				view.selectMove(this);
 
-			});		
+				var move = $(this).attr('alt')
+				game.playerMove = game.checkValidMove(move);
+			});
+
+			$goButton.on("click", function() {
+				game.play();
+			});	
 		}
 	};
 
 	var view = {
 		setPlayer: function(username) {
 			$player.text(username);
+		},
+		selectMove: function(move) {
+			$moves.removeClass('selected');
+			$(move).addClass('selected');
 		},
 		editUsername: function() {
 			$nameInput.val($player.text());
