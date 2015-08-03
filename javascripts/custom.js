@@ -143,6 +143,7 @@ $(document).ready( function() {
 			$player.text($nameInput.val());
 
 			username = $player.text();
+			game.username = username;
 			localStorage.setItem("username", username);
 		}
 	};
