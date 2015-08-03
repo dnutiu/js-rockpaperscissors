@@ -9,4 +9,5 @@ Feel free to use the contents of this rep in any way you want.
 
 - jQuery
 - FSVS
+- SweetAlert
 - iconarchive.com
