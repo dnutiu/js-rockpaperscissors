@@ -7,7 +7,7 @@ $(document).ready( function() {
 	var $moves = $('.moves img');
 
 	var controller = {
-		selection: null,
+		playerMove: null,
 		init: function() {
 			var username = localStorage.getItem('username') ? localStorage.getItem('username') : "Player";
 
@@ -33,7 +33,24 @@ $(document).ready( function() {
 				detectHash : true
 			});
 		},
+		checkValidMove: function(move) {
+			switch(move) {
+				case "Rock":
+					return new Rock();
+					break;
+				case "Paper":
+					return new Paper();
+					break;
+				case "Scissors":
+					return new Scissors();
+					break;		
+				default:
+					swal("Woops!", "Something went wrong, if the error persists reaload the page", "error");	 
+			}
+		},
 		bindEvents: function() {
+			var self = this;
+
 			$player.on("click", function() {
 				view.editUsername();
 			}).on("tap", function() {
@@ -56,6 +73,10 @@ $(document).ready( function() {
 			$moves.on("click", function() {
 				$('.moves img').removeClass('selected');
 				$(this).addClass('selected');
+				
+				var move = $(this).attr('alt')
+				self.playerMove = self.checkValidMove(move);
+
 			});		
 		}
 	};
