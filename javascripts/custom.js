@@ -1,22 +1,26 @@
 $(document).ready( function() {
 	
-	var $player = $('#username');
-	var $header = $('.game-slide header');
-	var $moves = $('.moves img');
-	var $nameInput = $('#username-input');
-	var $saveButton = $('#save-username');
-	var $goButton = $('#go');
+	var 
+	    $player        =  $('#username'),
+	    $header        =  $('.game-slide header'),
+	    $moves         =  $('.moves img'),
+	    $nameInput     =  $('#username-input'),
+	    $saveButton    =  $('#save-username'),
+	    $goButton      =  $('#go'),
+        $playerScore   =  $('.player-score'),
+        $computerScore =  $('.computer-score');
 
 	var game = {
 		username: null,
 		playerMove: null,
 		computerMove: null,
-		playerScore: null,
-		computerScore: null,
+		playerScore: 0,
+		computerScore: 0,
 		MOVES: ["Rock", "Paper", "Scissors"],
 		play: function() {
 			this.setComputerMove();
 			this.announceWinner();
+			view.updateHighScore();
 		},
 		announceWinner: function() {
 			var playerMove = this.playerMove;
@@ -26,11 +30,12 @@ $(document).ready( function() {
 				swal("You're Winner!", 
 					"Congratulations, you have won!", 
 					"success");
+				this.playerScore++;
 			} else if (computerMove.greaterThan(playerMove)) {
 				swal("You lose!",
 				 	"The computer defeated you. :(",
 					"error");
-
+				this.computerScore++;
 			} else if (playerMove.equal(computerMove)) {
 				swal("It's a draw!")
 			} else {
@@ -145,6 +150,10 @@ $(document).ready( function() {
 			username = $player.text();
 			game.username = username;
 			localStorage.setItem("username", username);
+		},
+		updateHighScore: function() {
+			$playerScore.text(game.playerScore);
+			$computerScore.text(game.computerScore);
 		}
 	};
 
